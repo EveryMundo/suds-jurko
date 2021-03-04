@@ -18,6 +18,7 @@
 The I{2nd generation} service proxy provides access to web services.
 See I{README.txt}
 """
+from functools import lru_cache
 
 import suds
 from suds import *
@@ -203,6 +204,7 @@ class Factory:
         self.resolver = PathResolver(wsdl)
         self.builder = Builder(self.resolver)
 
+    @lru_cache
     def create(self, name):
         """
         create a WSDL type by name
